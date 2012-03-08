@@ -29,6 +29,10 @@ module Constellation
       fall_back_on_gems
     end
 
+    def [](key)
+      @data[key.to_s]
+    end
+
     def method_missing(name, *arguments, &block)
       if data.has_key?(name.to_s)
         data[name.to_s]

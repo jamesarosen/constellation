@@ -23,6 +23,15 @@ describe Constellation do
     File.open(full_path, 'w') { |f| f << content }
   end
 
+  describe 'a configuration object' do
+    subject { config_class.new(foo: 'FOO') }
+
+    it('responds to properties') { subject.should respond_to(:foo) }
+    it('returns properties when called directly') { subject.foo.should == 'FOO' }
+    it('exposes properties via []') { subject[:foo].should == 'FOO' }
+    it('treats Symbol and String keys indifferently') { subject[:foo].should == subject['foo'] }
+  end
+
   describe 'configuration sources' do
     subject    { config_class.new(foo: 'paramfoo') }
 
