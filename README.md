@@ -39,6 +39,7 @@ ENV['MY_FOO'] = 'bar'
 ...
 config = MyConfiguration.new
 config.foo # => "bar"
+```
 
 ### Configuration Files
 
