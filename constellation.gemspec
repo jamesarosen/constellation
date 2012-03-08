@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.version     = '0.0.1'
   s.authors     = ["James A. Rosen"]
   s.email       = ["james.a.rosen@gmail.com"]
-  s.homepage    = ""
+  s.homepage    = "http://github.com/jamesarosen/constellation"
   s.summary     = %q{Load configuration settings}
   s.description = %q{Load configuration settings from ENV, dotfiles, and gems}
 
