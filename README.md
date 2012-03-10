@@ -126,28 +126,25 @@ Keys are available as methods:
 c.foo     # => "bar"
 ```
 
-Keys are converted to `String`s and available via `[]`:
+Keys are available via `[]` as `String`s or `Symbol`s:
 
 ```ruby
 c['foo']  # => "bar"
+c[:foo]   # => "bar"
 ```
 
-`to_hash` will return all of the settings:
+`to_hash` will return all of the settings, with `String` keys:
 
 ```ruby
 c.to_hash # => { "foo" => "bar" }
 ```
 
+(If you have loaded [`activesupport`](http://rubygems.org/gems/activesupport),
+`to_hash` will return a
+[HashWithIndifferentAccess](http://guides.rubyonrails.org/active_support_core_extensions.html#indifferent-access).)
+
 The enumerable methods are available:
 
 ```ruby
 c.map { |k,v| k + ':' + v } # => [ "foo:bar" ]
-```
-
-If you have loaded [`activesupport`](http://rubygems.org/gems/activesupport),
-the configuration will be available with
-[indifferent access](http://guides.rubyonrails.org/active_support_core_extensions.html#indifferent-access):
-
-```ruby
-c[:foo]   # => "bar"
 ```
