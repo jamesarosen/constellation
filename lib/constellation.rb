@@ -22,6 +22,7 @@ module Constellation
 
     def initialize(data = nil)
       @data = {}
+      indifferentize!
       reverse_merge(data || {})
       fall_back_on_env
       fall_back_on_file(Dir.pwd)
@@ -56,6 +57,11 @@ module Constellation
     private
 
     attr_reader :data
+
+    def indifferentize!
+      return unless data.respond_to?(:with_indifferent_access)
+      @data = data.with_indifferent_access
+    end
 
     def fall_back_on_env
       env_values = self.class.env_params.inject({}) do |sum, (prop, env_prop)|

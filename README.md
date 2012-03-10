@@ -146,3 +146,11 @@ The enumerable methods are available:
 ```ruby
 c.map { |k,v| k + ':' + v } # => [ "foo:bar" ]
 ```
+
+If you have loaded [`activesupport`](http://rubygems.org/gems/activesupport),
+the configuration will be available with
+[indifferent access](http://guides.rubyonrails.org/active_support_core_extensions.html#indifferent-access):
+
+```ruby
+c[:foo]   # => "bar"
+```
