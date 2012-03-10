@@ -121,4 +121,17 @@ describe Constellation do
       it('parses with the given parse method') { subject.foo.should == 'colonfoo' }
     end
   end
+
+  describe '#to_hash' do
+    subject { config_class.new(foo: 'FOO') }
+
+    it 'returns a Hash containing the settings' do
+      subject.to_hash['foo'].should == 'FOO'
+    end
+
+    it 'returns a defensive copy' do
+      subject.to_hash['foo'] = 'BAR'
+      subject.foo.should == 'FOO'
+    end
+  end
 end

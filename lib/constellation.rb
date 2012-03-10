@@ -29,6 +29,10 @@ module Constellation
       fall_back_on_gems
     end
 
+    def to_hash
+      @data.dup
+    end
+
     def [](key)
       @data[key.to_s]
     end
