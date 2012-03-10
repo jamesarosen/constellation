@@ -8,11 +8,11 @@ let your users set some configuration parameters.
 
 ### Ruby Parameters
 
-Start by creating a class and calling `acts_as_constellation`
+Start by creating a class and calling `Constellation.enhance`:
 
 ```ruby
 class MyConfiguration
-  acts_as_constellation
+  Constellation.enhance self
 end
 ```
 

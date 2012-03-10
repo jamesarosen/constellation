@@ -6,12 +6,10 @@ module Constellation
     end
   end
 
-  module ActsAs
-    def acts_as_constellation
-      extend Constellation::ClassMethods
-      self.env_params = {}
-      include Constellation::InstanceMethods
-    end
+  def self.enhance(klass)
+    klass.extend Constellation::ClassMethods
+    klass.env_params = {}
+    klass.send :include, Constellation::InstanceMethods
   end
 
   module ClassMethods
@@ -120,5 +118,3 @@ module Constellation
   end
 
 end
-
-Class.send :include, Constellation::ActsAs

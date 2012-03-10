@@ -10,7 +10,7 @@ describe Constellation do
 
   let(:config_class) do
     Class.new.tap do |c|
-      c.acts_as_constellation
+      Constellation.enhance c
       c.env_params = { foo: 'MY_FOO', bar: 'MY_BAR' }
       c.config_file = path
       c.load_from_gems = load_from_gems
