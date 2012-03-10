@@ -4,7 +4,7 @@ Constellation is a powerful configuration system. It's great for
 API client libraries and applications and anywhere else you need to
 let your users set some configuration parameters.
 
-## Usage
+## Putting Settings In
 
 ### Ruby Parameters
 
@@ -111,4 +111,38 @@ class MyConfiguration
     result
   end
 end
+```
+
+## Getting Settings Out
+
+Given a `Constellation` configuration object
+
+```ruby
+c = MyConfiguration.new(:foo => 'bar')
+```
+
+you can get the settings out in a few ways.
+
+Keys are available as methods:
+
+```ruby
+c.foo     # => "bar"
+```
+
+Keys are converted to `String`s and available via `[]`:
+
+```ruby
+c['foo']  # => "bar"
+```
+
+`to_hash` will return all of the settings:
+
+```ruby
+c.to_hash # => { "foo" => "bar" }
+```
+
+The enumerable methods are available:
+
+```ruby
+c.map { |k,v| k + ':' + v } # => [ "foo:bar" ]
 ```
