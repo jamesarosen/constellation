@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name        = "constellation"
-  s.version     = '0.1.0'
+  s.version     = '0.1.1'
   s.authors     = ["James A. Rosen"]
   s.email       = ["james.a.rosen@gmail.com"]
   s.homepage    = "http://github.com/jamesarosen/constellation"
