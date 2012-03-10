@@ -12,6 +12,15 @@ module Constellation
     klass.send :include, Constellation::InstanceMethods
   end
 
+  def self.hash_class
+    @hash_class ||= begin
+                      require 'active_support/hash_with_indifferent_access'
+                      ActiveSupport::HashWithIndifferentAccess
+                    rescue LoadError
+                      Hash
+                    end
+  end
+
   module ClassMethods
     attr_accessor :env_params, :config_file, :load_from_gems
   end
@@ -21,8 +30,7 @@ module Constellation
     include Enumerable
 
     def initialize(data = nil)
-      @data = {}
-      indifferentize!
+      @data = Constellation.hash_class.new
       reverse_merge(data || {})
       fall_back_on_env
       fall_back_on_file(Dir.pwd)
