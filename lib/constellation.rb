@@ -20,6 +20,8 @@ module Constellation
 
   module InstanceMethods
 
+    include Enumerable
+
     def initialize(data = nil)
       @data = {}
       reverse_merge(data || {})
@@ -35,6 +37,10 @@ module Constellation
 
     def [](key)
       @data[key.to_s]
+    end
+
+    def each(&block)
+      @data.each &block
     end
 
     def method_missing(name, *arguments, &block)

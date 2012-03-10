@@ -134,4 +134,16 @@ describe Constellation do
       subject.foo.should == 'FOO'
     end
   end
+
+  describe 'enumerable methods' do
+    subject { config_class.new(foo: 'FOO') }
+
+    it 'enumerates over the settings' do
+      result = []
+      subject.each { |k,v| result << [k,v] }
+      result.should == [ ['foo', 'FOO'] ]
+    end
+
+    it('is an Enumerable') { subject.should be_kind_of(Enumerable) }
+  end
 end
