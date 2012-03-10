@@ -21,7 +21,7 @@ properties is to pass them in Ruby:
 
 ```ruby
 config = MyConfiguration.new(:foo => 'bar')
-...
+
 config.foo # => "bar"
 ```
 
@@ -34,11 +34,9 @@ class MyConfiguration
   self.env_params = { :foo => 'MY_FOO' }
 end
 
-...
 ENV['MY_FOO'] = 'bar'
-...
-config = MyConfiguration.new
-config.foo # => "bar"
+
+MyConfiguration.new.foo # => "bar"
 ```
 
 ### Configuration Files
@@ -58,7 +56,7 @@ end
 If `./my/config.yml` contains the following
 
 ```yml
---- 
+---
 foo: bar
 ```
 
@@ -103,12 +101,11 @@ class MyConfiguration
   self.config_file = '.myrc'
 
   def parse_config_file(contents)
-    result = {}
-    contents.split("\n").each do |line|
+    contents.split("\n").inject({}) do |result, line|
       k, v = line.split(/:\s*/)
       result[k] = v
+      result
     end
-    result
   end
 end
 ```
