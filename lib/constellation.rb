@@ -5,11 +5,14 @@ module Constellation
       super("Could not parse #{file}. Try overriding #parse_config_file")
     end
   end
-
-  def self.enhance(klass)
-    klass.extend Constellation::ClassMethods
+  
+  def self.included(klass)
+    klass.class_eval do 
+      extend ClassMethods
+      include InstanceMethods
+    end
+    
     klass.env_params = {}
-    klass.send :include, Constellation::InstanceMethods
   end
 
   def self.hash_class
